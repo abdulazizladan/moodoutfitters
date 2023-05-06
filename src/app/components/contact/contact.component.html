@@ -1,0 +1,56 @@
+<div id="main" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z5">
+    <mat-card-header>
+      <mat-card-title>
+        Contact Us
+      </mat-card-title>
+      <mat-card-subtitle>
+
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content [formGroup]="contactForm" fxLayout="column">
+      <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutGap="30px">
+
+        <mat-form-field appearance="outline" fxFlex.gt-xs="50%">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex.gt-xs="50%">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Order ID (if applicable)</mat-label>
+        <input matInput formControlName="orderId">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea rows="6" matInput formControlName="body"></textarea>
+      </mat-form-field>
+
+      <mat-card-footer>
+        Please blah blah
+      </mat-card-footer>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button>
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

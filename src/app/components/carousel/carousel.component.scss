@@ -1,7 +1,19 @@
 #carousel{
   width: 100%;
-  aspect-ratio: 19/6;
+  aspect-ratio: 16/9;
   background-color: grey;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('/assets/img/logo.svg');
+  background-size: 50%;
+  animation: color-banner 10s infinite;
+}
+
+@keyframes color-banner{
+  0%{ background-color: skyblue }
+  25%{ background-color: yellow}
+  50%{ background-color: red }
+  75%{ background-color: orange }
+  100%{ background-color: skyblue }
 }

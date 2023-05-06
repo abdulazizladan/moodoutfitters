@@ -9,7 +9,7 @@ import { Item } from 'src/app/models/item.model';
 export class ItemComponent implements OnInit {
 
   @Input()
-  item ?: Item;
+  img!: string;
 
   constructor() {
 

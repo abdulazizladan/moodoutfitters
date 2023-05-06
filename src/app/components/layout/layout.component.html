@@ -1,0 +1,55 @@
+<div fxLayout="column" id="mainLayout">
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span fxFlex="1 1 auto"></span>
+      Mood Outfitters
+      <span fxFlex="1 1 auto"></span>
+      <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+        Naira - &#8358;
+        <mat-icon>arrow_downward</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Naira - &#8358;</button>
+        <button mat-menu-item>Pounds - &#163;</button>
+      </mat-menu>
+      <button mat-icon-button routerLink="cart">
+        <mat-icon matBadge="23" matBadgePosition="after" matBadgeColor="accent" matBadgeSize="small">
+          shopping_cart
+        </mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #drawer fxLayout="column" mode="over" >
+      <div></div>
+      <button mat-button routerLink="../" (click)="drawer.toggle()">Shop all</button>
+      <button mat-button routerLink="shipping" (click)="drawer.toggle()">Shipping & delivery</button>
+      <button mat-button routerLink="about-us" (click)="drawer.toggle()">About Us</button>
+      <button mat-button routerLink="contact-us" (click)="drawer.toggle()">Contact Us</button>
+      <button mat-button routerLink="returns" (click)="drawer.toggle()">Returns</button>
+      <button mat-button routerLink="wholesale" (click)="drawer.toggle()">Wholesale</button>
+    </mat-sidenav>
+    <mat-sidenav-content fxLayout="column" fxLayoutGap="25px">
+
+      <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center">
+        <div fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="800px" fxFlex.gt-md="1200px">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center">
+        <div fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="800px" fxFlex.gt-md="1200px">
+          <app-footer></app-footer>
+        </div>
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+</div>

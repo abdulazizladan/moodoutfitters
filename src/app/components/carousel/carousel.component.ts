@@ -1,4 +1,4 @@
-import { Component, OnInit, OnViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 const images: string[] = [
   "https://www.shutterstock.com/image-photo/baseball-cap-isolated-on-white-260nw-701464549.jpg",
@@ -11,7 +11,7 @@ const images: string[] = [
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit, OnViewInit{
+export class CarouselComponent implements OnInit{
 
   image = images[0];
   constructor() {
@@ -22,7 +22,4 @@ export class CarouselComponent implements OnInit, OnViewInit{
 
   }
 
-  ngOnViewInit() {
-    
-  }
 }
