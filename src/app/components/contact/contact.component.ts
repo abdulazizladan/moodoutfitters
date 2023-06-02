@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MailService } from 'src/app/services/mail.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,22 +11,32 @@ export class ContactComponent implements OnInit {
 
   public contactForm: FormGroup = new FormGroup({})
 
-  constructor( private fb: FormBuilder) {
+  constructor( private fb: FormBuilder, private mailService: MailService ){
 
   }
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      email: ['', [Validators.email, Validators.required]],
+      name: [''],
+      EmailAddress: ['', [Validators.email, Validators.required]],
       orderId: [''],
-      title: ['', [Validators.required]],
-      body: ['', Validators.required]
+      Subject: ['', [Validators.required]],
+      Body: ['', Validators.required]
     })
   }
 
   submit(): void {
-
+    const formData = this.contactForm.value;
+    console.log(formData)
+    this.mailService.sendMail('formData').subscribe(
+      response => {
+        location.href = 'https://mailthis.to/confirm'
+        console.log(response)
+      },
+      error => {
+        console.warn(error.responseText)
+        console.log(error)
+      }
+    )
   }
 }

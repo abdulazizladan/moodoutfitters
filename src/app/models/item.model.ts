@@ -3,7 +3,10 @@ export class Item{
   'description': string;
   'image': string;
   'id': string;
-  'price': number;
+  'prices': {
+    'ngn': number,
+    'gbp': number
+  };
   'stock': number;
-  'dateAdded': Date
+  'dateAdded': null | Date
 }

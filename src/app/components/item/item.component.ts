@@ -11,6 +11,9 @@ export class ItemComponent implements OnInit {
   @Input()
   img!: string;
 
+  @Input()
+  data!: Item;
+
   constructor() {
 
   }

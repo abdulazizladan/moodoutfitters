@@ -1,3 +1,40 @@
-<span class="mat-h1">
-  No items added
-</span>
+<div fxLayout="column" fxLayoutGap="25px">
+
+  <div></div>
+
+  <div>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <h3>No items added.</h3>
+      <app-cart-item *ngFor="let x of [2, 4, 6]"></app-cart-item>
+
+      <ngx-stripe-card></ngx-stripe-card>
+      <!--<stripe-card #stripeCard
+  [(token)]      = "token"
+  (catch)        = "$event"
+  (changed)      = "$event"
+  [(invalid)]    = "invalidError"
+  (cardMounted)  = "cardCaptureReady = 1"
+></stripe-card>
+
+<button type="button" (click)="stripeCard.createToken(extraData)">createToken</button>-->
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+  </mat-card>
+
+  <div fxLayout="row" fxLayoutGap="25px">
+    <span fxFlex="1 1 auto"></span>
+    <button mat-flat-button color="warn" disabled>
+      <mat-icon>cancel</mat-icon>
+      Remove all items
+    </button>
+    <button mat-flat-button color="primary">
+      <mat-icon>payment</mat-icon>
+      Proceed to checkout
+    </button>
+  </div>
+</div>

@@ -6,18 +6,21 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span fxFlex="1 1 auto"></span>
-      Mood Outfitters
+      <span routerLink="../" id="homeLink">
+        Mood Outfitters
+      </span>
       <span fxFlex="1 1 auto"></span>
       <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
-        Naira - &#8358;
+        <span *ngIf="isNaira">Naira - &#8358;</span>
+        <span *ngIf="!isNaira">Pounds - &#163;</span>
         <mat-icon>arrow_downward</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Naira - &#8358;</button>
-        <button mat-menu-item>Pounds - &#163;</button>
+        <button mat-menu-item (click)="setNaira()">Naira - &#8358;</button>
+        <button mat-menu-item (click)="setPounds()">Pounds - &#163;</button>
       </mat-menu>
       <button mat-icon-button routerLink="cart">
-        <mat-icon matBadge="23" matBadgePosition="after" matBadgeColor="accent" matBadgeSize="small">
+        <mat-icon>
           shopping_cart
         </mat-icon>
       </button>
