@@ -1,42 +1,54 @@
 import { Component, signal, OnInit, ViewChild } from '@angular/core';
-import { State } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { MatDialog } from '@angular/material/dialog';
+import { SumaryComponent } from '../sumary/sumary.component';
 
-import { StripeService, StripeCardComponent } from 'ngx-stripe';
+import { Observable } from 'rxjs';
+import { RemoveAllItemsAction } from 'src/app/store/actions/cart.actions';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
 
-  items = signal(0);
+  items$ !: Observable<CartState>;
+  total : number = 0.00;
+  shippingAddressForm!: FormGroup;
 
   constructor(
-    private store: State<CartState>, private stripeService: StripeService ) {
-
+    private store: Store<{cart: CartState}>,
+    private fb: FormBuilder,
+    private dialog: MatDialog ) {
+      this.items$ = this.store.select((items) => items.cart)
   }
 
   ngOnInit() {
-    this.stripeService.setKey('YOUR_STRIPE_PUBLISHABLE_KEY');
+    this.initializeForm();
   }
 
-  createToken(card: StripeCardComponent) {
-    this.stripeService
-      .createToken(card.element, { name: 'John Doe' })
-      .subscribe(result => {
-        if (result.token) {
-          // You can send the token to your server for further processing
-          console.log(result.token);
-        } else if (result.error) {
-          console.error(result.error.message);
-        }
-      });
+  initializeForm() {
+    this.shippingAddressForm = this.fb.group({
+      fullName: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      phone:  this.fb.group({
+        extension: [''],
+        number: ['']
+      }),
+      deliveryAddress: [''],
+      region: ['', Validators.required]
+    })
   }
 
-  makePayment(amount: number, currency: string) {
+  clearCart() {
+    this.store.dispatch(RemoveAllItemsAction())
+  }
 
+  openSummary() {
+    this.dialog.open(SumaryComponent)
   }
 
 }

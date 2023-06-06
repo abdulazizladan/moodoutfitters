@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/models/item.model';
 import { StoreService } from 'src/app/services/store.service';
+import { CartState } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-items-list',
@@ -12,7 +14,9 @@ export class ItemsListComponent implements OnInit{
 
   items$!: Observable<Item[]>
 
-  constructor(private storeService: StoreService) {
+  constructor(
+    private storeService: StoreService,
+    private store: Store<CartState>) {
 
   }
 

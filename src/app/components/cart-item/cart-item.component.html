@@ -1,12 +1,29 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Item description</mat-card-title>
-  </mat-card-header>
+<div>
+    <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>Unit cost: &#8358; {{data.prices.ngn | number : '1.2-2'}}</mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-actions align="end">
-    <button mat-flat-button color="warn">
-      <mat-icon>cancel</mat-icon>
-      Remove</button>
-  </mat-card-actions>
+    <img matCardImageMedium src={{data.image}}>
+    <mat-card-content>
+      <div fxLayout="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+        <mat-select [(value)]="quantity">
+          <mat-option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" value={{i}}>
+            {{i}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
 
-</mat-card>
+      <span fxFlex="100%"></span><span>Total: &#8358;{{this.data.prices.ngn * quantity | number : '1.2-2'}}</span>
+    </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-flat-button color="warn" (click)="remove()">
+        <mat-icon>cancel</mat-icon>
+        Remove</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

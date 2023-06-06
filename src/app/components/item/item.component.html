@@ -1,22 +1,25 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      {{data.name}}
-    </mat-card-title>
-    <mat-card-subtitle>
-      <span>&#8358;{{data.prices.ngn | number}}</span>
-      <span *ngIf="null">&#163;</span>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <img src="{{data.image}}" matCardImage>
-  <mat-card-actions>
-    <button mat-button>
-      Buy
-    </button>
-    <span fxFlex="1 1 auto"></span>
-    <button mat-button>
-      <mat-icon>add_shopping_cart</mat-icon>
-      Add to cart
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div id="parent">
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>
+        {{data.name}}
+      </mat-card-title>
+      <mat-card-subtitle *ngIf="currency$ | async as currency">
+        <span *ngIf="currency == 'GBP'">&#163;{{data.prices.gbp | number: '1.2-2'}}</span>
+        <span *ngIf="currency == 'NGN'">&#8358;{{data.prices.ngn | number: '1.2-2'}}</span>
+        <span *ngIf="null">&#163;</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img src="{{data.image}}" matCardImage>
+    <mat-card-actions>
+      <button mat-button (click)="buy()">
+        Buy
+      </button>
+      <span fxFlex="1 1 auto"></span>
+      <button mat-button (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Add to cart
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item/item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { StoreModule } from '@ngrx/store';
-import { cart, key } from './store/reducers/cart.reducer';
+import { Cart, key } from './store/reducers/cart.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -35,17 +35,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 //Stripe Module
-import { NgxStripeModule } from 'ngx-stripe';
+//import { NgxStripeModule } from 'ngx-stripe';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreEffects } from './store/effects/store.effects';
+import { SumaryComponent } from './components/sumary/sumary.component';
 
 
 @NgModule({
@@ -67,7 +73,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     HomeComponent,
     NotFoundComponent,
     CheckoutComponent,
-    CartItemComponent
+    CartItemComponent,
+    SumaryComponent
   ],
 
   imports: [
@@ -81,15 +88,20 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     MatSidenavModule,
     MatMenuModule,
     MatCardModule,
+    MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
     MatChipsModule,
     MatBadgeModule,
-    NgxStripeModule.forRoot(''),
-    StoreModule.forRoot({cart: cart}),
+    MatTooltipModule,
+    //NgxStripeModule.forRoot(''),
+    StoreModule.forRoot({cart: Cart}),
+    EffectsModule.forRoot(StoreEffects),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

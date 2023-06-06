@@ -13,6 +13,6 @@ export class StoreService {
   }
 
   getAll(): Observable<Item[]> {
-    return this.http.get<Item[]>('../assets/items.json');
+    return this.http.get<Item[]>('https://api.npoint.io/9df1a9bcb633e147c1ea');
   }
 }

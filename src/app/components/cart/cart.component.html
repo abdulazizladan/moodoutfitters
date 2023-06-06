@@ -5,34 +5,95 @@
   <div>
   </div>
 
-  <mat-card>
+  <mat-card *ngIf="items$ | async as cart">
+    <mat-card-header>
+      <mat-card-title>Shoppig cart</mat-card-title>
+    </mat-card-header>
     <mat-card-content>
-      <h3>No items added.</h3>
-      <app-cart-item *ngFor="let x of [2, 4, 6]"></app-cart-item>
+      <h3 *ngIf="!cart.cart">No items in cart.</h3>
+      <div>
+      <app-cart-item *ngFor="let item of cart.cart" [data]="item"></app-cart-item>
+      </div>
 
-      <ngx-stripe-card></ngx-stripe-card>
-      <!--<stripe-card #stripeCard
-  [(token)]      = "token"
-  (catch)        = "$event"
-  (changed)      = "$event"
-  [(invalid)]    = "invalidError"
-  (cardMounted)  = "cardCaptureReady = 1"
-></stripe-card>
-
-<button type="button" (click)="stripeCard.createToken(extraData)">createToken</button>-->
+      <div fxFlexLayout="row">
+        <span>Total</span>
+        <span fxFlex="1 1 auto"></span>
+        <span>&#8358;{{total | number : '1.2-2'}}</span>
+      </div>
     </mat-card-content>
+    <mat-card-footer>
+
+    </mat-card-footer>
     <mat-card-actions>
 
     </mat-card-actions>
   </mat-card>
 
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Shipping details
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column" fxLayoutGap="25px" [formGroup]="shippingAddressForm">
+
+      <mat-form-field>
+        <mat-label>Full name</mat-label>
+        <input matInput formControlName="fullName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="15px" formGroupName="phone">
+
+        <mat-form-field fxFlex="100px">
+          <mat-label>Ext</mat-label>
+          <input matInput formControlName="extension">
+          <span matPrefix>+ &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Phone number</mat-label>
+          <input matInput formControlName="number">
+          <mat-icon matPrefix>phone</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout.gt-xs="row" fxLayoutGap="25px">
+        <mat-form-field fxFlex.gt-xs="1 1 auto">
+          <mat-label>Delivery address (Leave blank if you would prefer to pick up at the store)</mat-label>
+          <textarea matInput formControlName="deliveryAddress"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Shipping region</mat-label>
+          <mat-select formControlName="region">
+            <mat-option value="UK">The United Kingdon</mat-option>
+            <mat-option value="EU">The Europian Union</mat-option>
+            <mat-option value="NG">Nigeria</mat-option>
+            <mat-option value="other">Other (include country in address)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
   <div fxLayout="row" fxLayoutGap="25px">
     <span fxFlex="1 1 auto"></span>
-    <button mat-flat-button color="warn" disabled>
-      <mat-icon>cancel</mat-icon>
-      Remove all items
+    <button mat-flat-button color="primary" routerLink="../">
+      <mat-icon>assignment_return</mat-icon>
+      Return to shopping
     </button>
-    <button mat-flat-button color="primary">
+    <button mat-flat-button color="warn" *ngIf="items$" (click)="clearCart()" matTooltip="Remove all items from shopping cart">
+      <mat-icon>cancel</mat-icon>
+      Clear cart
+    </button>
+    <button mat-flat-button color="primary" (click)="openSummary()" [disabled]="shippingAddressForm.invalid">
       <mat-icon>payment</mat-icon>
       Proceed to checkout
     </button>
