@@ -2,6 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { Item } from "src/app/models/item.model";
 import { setNaira, setPounds } from "../actions/currency.actions";
 import { AddItemAction, RemoveAllItemsAction, RemoveItemAction } from "../actions/cart.actions";
+import { ContactInfo } from "src/app/models/contact.model";
 
 export const key = 'cart';
 
@@ -9,38 +10,28 @@ export class CartState{
   items !: Item[];
   cart !: Item[];
   currency !: 'NGN' | 'GBP';
+  contact !: ContactInfo | null;
   loading !: boolean;
 }
 
 export const initialState: CartState = {
   items: [
-    /*{
-      id: 'abcd',
-      name: 'abbb',
-      image: 'img1.jpg',
-      prices: {
-        ngn: 2000,
-        gbp: 37
-      },
-      stock: 10,
-      dateAdded: new Date(123),
-      description: 'asdf'
-    },
     {
-      id: 'abab',
-      name: 'abbb',
-      image: 'img2.jpg',
+      id: "221",
+      dateAdded: new Date(22),
+      description: "blah",
+      image: "jh",
+      name: "cap",
       prices: {
-        ngn: 2500,
-        gbp: 38
+        gbp: 222,
+        ngn: 127
       },
-      stock: 5,
-      dateAdded: new Date(153),
-      description: 'aceg'
-    }*/
+      stock: 34
+    }
   ],
   cart: [],
   currency: "NGN",
+  contact: null,
   loading: false
 }
 
@@ -56,7 +47,7 @@ export const Cart = createReducer(
       cart: updatedItems,
     };
   }),
-  /**on(AddItemAction, (state, { item }) => {
+  on(AddItemAction, (state, { item }) => {
 
     const isItemInCart = state.cart.some(cartItem => cartItem.id != item.id)
 
@@ -70,8 +61,8 @@ export const Cart = createReducer(
       ...state,
       cart: updateCart
     }
-  })*/
-  on(AddItemAction, (state, {item}) => ({
-    ...state,  cart: [...state.cart, item] })
-  )
+  })
+  //on(AddItemAction, (state, {item}) => ({
+  //  ...state,  cart: [...state.cart, item] })
+  //)
 )

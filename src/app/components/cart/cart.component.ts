@@ -48,7 +48,9 @@ export class CartComponent implements OnInit {
   }
 
   openSummary() {
-    this.dialog.open(SumaryComponent)
+    const formData = this.shippingAddressForm.value;
+    console.log(formData);
+    this.dialog.open(SumaryComponent, {data: formData});
   }
 
 }

@@ -1,5 +1,36 @@
 <mat-dialog-content>
-  A summary of your order
+  Order summary
+  <mat-divider></mat-divider>
+
+  <div fxLayout="column" fxLayoutGap="15px">
+
+    <div>
+      Name :{{data.fullName | titlecase}}
+    </div>
+
+    <div>
+      Phone : +{{data.phone.ext}} {{data.phone.number}}
+    </div>
+
+    <div>
+      Email : {{data.email}}
+    </div>
+
+    <div>
+      Address : {{data.deliveryAddress}}
+    </div>
+
+    <div>
+      Region: {{data.region}}
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayutGap="15px">
+    <span>Total</span>
+    <span fxFlex="1 1 auto"></span>
+    <span>&#8358;0.00</span>
+  </div>
   </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-flat-button>
@@ -7,7 +38,7 @@
     Back to cart
   </button>
   <span fxFlex="1 1 auto"></span>
-  <button mat-flat-button>
+  <button mat-flat-button color="accent">
     <mat-icon>thumb_up</mat-icon>
     Proceed to checkout
   </button>

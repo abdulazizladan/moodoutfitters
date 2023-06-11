@@ -44,6 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 //Stripe Module
 //import { NgxStripeModule } from 'ngx-stripe';
@@ -97,6 +98,7 @@ import { SumaryComponent } from './components/sumary/sumary.component';
     MatChipsModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatDividerModule,
     //NgxStripeModule.forRoot(''),
     StoreModule.forRoot({cart: Cart}),
     EffectsModule.forRoot(StoreEffects),

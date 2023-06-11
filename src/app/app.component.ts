@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { map, interval, take, toArray, Observable } from 'rxjs';
 
 @Component({
@@ -9,6 +9,7 @@ import { map, interval, take, toArray, Observable } from 'rxjs';
 export class AppComponent {
   title = 'moodoutfitters';
 
+  variable =signal<number>(218);
 }
 
 
