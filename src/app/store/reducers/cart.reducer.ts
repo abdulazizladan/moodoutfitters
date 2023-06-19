@@ -1,21 +1,21 @@
 import { createReducer, on } from "@ngrx/store";
 import { Item } from "src/app/models/item.model";
 import { setNaira, setPounds } from "../actions/currency.actions";
-import { AddItemAction, RemoveAllItemsAction, RemoveItemAction } from "../actions/cart.actions";
+import { AddItemAction, LoadItemsAction, RemoveAllItemsAction, RemoveItemAction } from "../actions/cart.actions";
 import { ContactInfo } from "src/app/models/contact.model";
 
 export const key = 'cart';
 
-export class CartState{
+export class Cart{
   items !: Item[];
   cart !: Item[];
-  currency !: 'NGN' | 'GBP';
+  currency !: "NGN" | "GBP";
   contact !: ContactInfo | null;
   loading !: boolean;
 }
 
-export const initialState: CartState = {
-  items: [
+export const initialState: Cart = {
+  /**items: [
     {
       id: "221",
       dateAdded: new Date(22),
@@ -28,15 +28,17 @@ export const initialState: CartState = {
       },
       stock: 34
     }
-  ],
+  ],**/
+  items: [],
   cart: [],
   currency: "NGN",
   contact: null,
   loading: false
 }
 
-export const Cart = createReducer(
+export const CartState = createReducer(
   initialState,
+  on(LoadItemsAction, state => ({...state, loading: true})),
   on(setNaira, state => ({...state, currency: 'NGN'}) ),
   on(setPounds, state => ({...state, currency: 'GBP'}) ),
   on(RemoveAllItemsAction, state => ({...state, cart: []})),
@@ -47,7 +49,7 @@ export const Cart = createReducer(
       cart: updatedItems,
     };
   }),
-  on(AddItemAction, (state, { item }) => {
+  /*on(AddItemAction, (state, { item }) => {
 
     const isItemInCart = state.cart.some(cartItem => cartItem.id != item.id)
 
@@ -61,8 +63,8 @@ export const Cart = createReducer(
       ...state,
       cart: updateCart
     }
-  })
-  //on(AddItemAction, (state, {item}) => ({
-  //  ...state,  cart: [...state.cart, item] })
-  //)
+  })*/
+  on(AddItemAction, (state, {item}) => ({
+    ...state,  cart: [...state.cart, item] })
+  )
 )

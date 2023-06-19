@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { setNaira, setPounds } from 'src/app/store/actions/currency.actions';
-import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { Cart } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +12,7 @@ export class LayoutComponent {
 
   isNaira: boolean = true;
 
-  constructor( private store: Store<CartState>) {
+  constructor( private store: Store<Cart>) {
 
   }
 

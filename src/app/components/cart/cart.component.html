@@ -5,14 +5,17 @@
   <div>
   </div>
 
-  <mat-card *ngIf="items$ | async as cart">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Shoppig cart</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <h3 *ngIf="!cart.cart">No items in cart.</h3>
+      <!--<h3 *ngIf="!cart.cart">No items in cart.</h3>-->
       <div>
-      <app-cart-item *ngFor="let item of cart.cart" [data]="item"></app-cart-item>
+      <ng-container *ngFor="let item of itemsSequence$ | async">
+        <app-cart-item  [data]="item"></app-cart-item>
+      </ng-container>
+
       </div>
 
       <div fxFlexLayout="row">
@@ -89,7 +92,7 @@
       <mat-icon>assignment_return</mat-icon>
       Return to shopping
     </button>
-    <button mat-flat-button color="warn" *ngIf="items$" (click)="clearCart()" matTooltip="Remove all items from shopping cart">
+    <button mat-flat-button color="warn" *ngIf="itemsSequence$" (click)="clearCart()" matTooltip="Remove all items from shopping cart">
       <mat-icon>cancel</mat-icon>
       Clear cart
     </button>

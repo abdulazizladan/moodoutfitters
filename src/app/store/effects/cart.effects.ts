@@ -5,7 +5,7 @@ import { Actions } from "@ngrx/effects";
 export class CartEffects{
 
   constructor(
-    public actions$: Actions
+    public actions$: Actions,
   ) {
 
   }

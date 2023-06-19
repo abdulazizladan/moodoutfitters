@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Item } from 'src/app/models/item.model';
 import { RemoveItemAction } from 'src/app/store/actions/cart.actions';
-import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { Cart } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-cart-item',
@@ -18,7 +18,7 @@ export class CartItemComponent implements OnInit{
 
   total!: number;
 
-  constructor( private store: Store<{cart: CartState}>) {
+  constructor( private store: Store<{cart: Cart}>) {
 
   }
 

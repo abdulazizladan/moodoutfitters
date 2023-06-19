@@ -11,7 +11,9 @@ import { LoadItemsAction, LoadItemsActionSuccess } from "../actions/cart.actions
 @Injectable()
 export class StoreEffects {
 
-  constructor( private storeService: StoreService, private actions$: Actions) {
+  constructor(
+    private storeService: StoreService,
+    private actions$: Actions) {
 
   }
 

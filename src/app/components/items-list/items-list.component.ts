@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/models/item.model';
 import { StoreService } from 'src/app/services/store.service';
-import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { LoadItemsAction } from 'src/app/store/actions/cart.actions';
+import { Cart } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-items-list',
@@ -16,11 +17,12 @@ export class ItemsListComponent implements OnInit{
 
   constructor(
     private storeService: StoreService,
-    private store: Store<CartState>) {
+    private store: Store<Cart>) {
 
   }
 
   ngOnInit(): void {
     this.items$ = this.storeService.getAll();
+    this.store.dispatch(LoadItemsAction())
   }
 }

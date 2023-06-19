@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/models/item.model';
 import { AddItemAction, RemoveAllItemsAction } from 'src/app/store/actions/cart.actions';
-import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { Cart } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-item',
@@ -18,7 +18,7 @@ export class ItemComponent implements OnInit {
 
   currency$!: Observable<string>;
 
-  constructor( private store: Store<{cart: CartState}>, private router: Router) {
+  constructor( private store: Store<{cart: Cart}>, private router: Router) {
     this.currency$ = this.store.select(cart => cart.cart.currency);
   }
 

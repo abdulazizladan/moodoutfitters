@@ -1,12 +1,13 @@
 import { Component, signal, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CartState } from 'src/app/store/reducers/cart.reducer';
+import { Cart } from 'src/app/store/reducers/cart.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { SumaryComponent } from '../sumary/sumary.component';
 
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, distinct, forkJoin, mergeMap, switchMap } from 'rxjs';
 import { RemoveAllItemsAction } from 'src/app/store/actions/cart.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Item } from 'src/app/models/item.model';
 
 @Component({
   selector: 'app-cart',
@@ -15,15 +16,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
 
-  items$ !: Observable<CartState>;
+  itemsSequence$: Observable<Item[]>;
   total : number = 0.00;
   shippingAddressForm!: FormGroup;
 
   constructor(
-    private store: Store<{cart: CartState}>,
+    private store: Store<{cart: Cart}>,
     private fb: FormBuilder,
     private dialog: MatDialog ) {
-      this.items$ = this.store.select((items) => items.cart)
+      this.itemsSequence$ = this.store.select((items) => items.cart.cart).pipe()
   }
 
   ngOnInit() {

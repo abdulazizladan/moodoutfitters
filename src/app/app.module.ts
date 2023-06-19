@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item/item.component';
 import { CartComponent } from './components/cart/cart.component';
 import { StoreModule } from '@ngrx/store';
-import { Cart, key } from './store/reducers/cart.reducer';
+import { Cart, CartState, key } from './store/reducers/cart.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -48,6 +48,8 @@ import { MatDividerModule } from '@angular/material/divider';
 
 //Stripe Module
 //import { NgxStripeModule } from 'ngx-stripe';
+import { StripeModule } from 'stripe-angular';
+
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -99,11 +101,11 @@ import { SumaryComponent } from './components/sumary/sumary.component';
     MatBadgeModule,
     MatTooltipModule,
     MatDividerModule,
+    StripeModule.forRoot('sk_test_51N2SbQEtQOT'),
     //NgxStripeModule.forRoot(''),
-    StoreModule.forRoot({cart: Cart}),
+    StoreModule.forRoot({cart: CartState}),
     EffectsModule.forRoot(StoreEffects),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]
