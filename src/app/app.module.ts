@@ -55,6 +55,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreEffects } from './store/effects/store.effects';
 import { SumaryComponent } from './components/sumary/sumary.component';
+import { DynamicScriptDirective } from './directives/dynamic-script.directive';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { SumaryComponent } from './components/sumary/sumary.component';
     NotFoundComponent,
     CheckoutComponent,
     CartItemComponent,
-    SumaryComponent
+    SumaryComponent,
+    DynamicScriptDirective
   ],
 
   imports: [

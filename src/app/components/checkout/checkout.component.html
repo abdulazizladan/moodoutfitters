@@ -1,15 +1,30 @@
-<div *ngIf="invalidError" style="color:red">
-  {{ invalidError }}
-</div>
 
-<stripe-card #stripeCard
-  (paymentMethodChange) = "setPaymentMethod($event)"
-  (tokenChange) = "setStripeToken($event)"
-  (sourceChange) = "setStripeSource($event)">
-</stripe-card>
+<mat-card>
 
-  <div fxLayout="row space-between">
-    <button type="button" mat-flat-button color="accent">createPaymentMethod</button>
-    <button type="button"  mat-flat-button color="warn" class="btn btn-warning me-1">createSource</button>
-    <button type="button"  mat-flat-button color="primary" class="btn btn-danger me-1">createToken</button>
-  </div>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <div appDynamicScript>
+      <div
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+    data-key="pk_test_51N2SbQEtQOTCGnHqvPOMo5SXFzqunmx0kf66STRTtrHitkYLH8eZgqZfXqr9J93SXjvMOPGrDaaS6rEpWjM6eu9V00C1S91xdW"
+
+    data-name="Caps"
+    data-description="Comfortable caps"
+    data-amount="2500"
+    data-currency="ngn"
+     >
+      Some Text
+     </div>
+    </div>
+  </mat-card-actions>
+
+</mat-card>
+

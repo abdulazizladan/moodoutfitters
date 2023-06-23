@@ -95,7 +95,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "https://checkout.stripe.com/checkout.js"
+            ]
           }
         }
       }
