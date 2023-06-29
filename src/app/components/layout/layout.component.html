@@ -1,6 +1,6 @@
 <div fxLayout="column" id="mainLayout">
 
-  <mat-toolbar color="primary">
+  <mat-toolbar>
     <mat-toolbar-row>
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
@@ -10,7 +10,7 @@
         Mood Outfitters
       </span>
       <span fxFlex="1 1 auto"></span>
-      <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      <button mat-button color="primary" [matMenuTriggerFor]="menu">
         <span *ngIf="isNaira">Naira - &#8358;</span>
         <span *ngIf="!isNaira">Pounds - &#163;</span>
         <mat-icon>arrow_downward</mat-icon>
@@ -40,7 +40,7 @@
     <mat-sidenav-content fxLayout="column" fxLayoutGap="25px">
 
       <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center">
-        <div fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.md="800px" fxFlex.gt-md="1200px">
+        <div fxFlex="100%">
           <router-outlet></router-outlet>
         </div>
       </div>

@@ -1,3 +1,13 @@
 #parent{
   padding: 15px;
+  .mat-card:hover{
+    background-color: #cccccc;
+  }
+}
+img{
+  cursor:pointer;
+}
+img:hover{
+  scale: 1.05;
+  transition: 0.5s;
 }

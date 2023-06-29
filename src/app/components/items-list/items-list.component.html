@@ -1,20 +1,12 @@
-<!--<div fxLayout="row wrap" fxLayoutGap="25px grid">
-  <app-item fxFlex.xs="100%"
-  fxFlex.sm="50%"
-  fxFlex.md="33%"
-  fxFlex.gt-md="25%"
-  *ngFor="let i of ['../assets/img/01.jpg', '../assets/img/02.jpg', '../assets/img/03.jpg', '../assets/img/04.jpg', '../assets/img/04.jpg', '../assets/img/04.jpg', '../assets/img/04.jpg'] as image"
-  [img]=i></app-item>
-</div>-->
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="row wrap" fxLayoutGap="0px grid"  fxFlex.sm="90%" fxFlex.md="800px" fxFlex.gt-md="1200px">
+    <div *ngFor="let item of items$ | async">
 
-<div fxLayout="row wrap" fxLayoutGap="0px grid">
-  <div *ngFor="let item of items$ | async">
-
+    </div>
+    <app-item fxFlex.xs="100%"
+    fxFlex.sm="50%"
+    fxFlex.md="33%"
+    fxFlex.gt-md="25%"
+    *ngFor="let item of items$ | async" [data]="item"></app-item>
   </div>
-  <app-item fxFlex.xs="100%"
-  fxFlex.sm="50%"
-  fxFlex.md="33%"
-  fxFlex.gt-md="25%"
-  *ngFor="let item of items$ | async" [data]="item"></app-item>
 </div>
-

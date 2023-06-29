@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/models/item.model';
 import { AddItemAction, RemoveAllItemsAction } from 'src/app/store/actions/cart.actions';
 import { Cart } from 'src/app/store/reducers/cart.reducer';
+import { ItemDetailsComponent } from '../item-details/item-details.component';
 
 @Component({
   selector: 'app-item',
@@ -18,7 +20,10 @@ export class ItemComponent implements OnInit {
 
   currency$!: Observable<string>;
 
-  constructor( private store: Store<{cart: Cart}>, private router: Router) {
+  constructor(
+    private store: Store<{cart: Cart}>,
+    private router: Router,
+    private dialog: MatDialog) {
     this.currency$ = this.store.select(cart => cart.cart.currency);
   }
 
@@ -37,6 +42,12 @@ export class ItemComponent implements OnInit {
   addToCart() {
     const newItem = this.data;
     this.store.dispatch(AddItemAction({item: newItem}));
+  }
+
+  popup( data: Item ) {
+    this.dialog.open(ItemDetailsComponent, {
+      data: data
+    })
   }
 
 }
