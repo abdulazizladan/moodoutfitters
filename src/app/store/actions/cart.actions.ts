@@ -14,7 +14,7 @@ export enum CartActions{
 
 export const LoadItemsAction = createAction('[Store] Load All Items');
 
-export const LoadItemsActionSuccess = createAction('[Store] Load All Items Success');
+export const LoadItemsActionSuccess = createAction('[Store] Load All Items Success', props<{items: Item[]}>());
 
 export const LoadItemsActionFailure = createAction('[Store] Load All Items Failure');
 

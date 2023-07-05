@@ -21,7 +21,7 @@ export class StoreEffects {
     ofType(LoadItemsAction),
     exhaustMap(() => this.storeService.getAll()
     .pipe(
-      map(items => LoadItemsActionSuccess()),
+      map(items => LoadItemsActionSuccess({items})),
       catchError(() => of({type: '[Store] Load All Items Error'}))
     )
     )

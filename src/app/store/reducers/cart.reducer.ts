@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { Item } from "src/app/models/item.model";
 import { setNaira, setPounds } from "../actions/currency.actions";
-import { AddItemAction, LoadItemsAction, RemoveAllItemsAction, RemoveItemAction } from "../actions/cart.actions";
+import { AddItemAction, LoadItemsAction, LoadItemsActionSuccess, RemoveAllItemsAction, RemoveItemAction } from "../actions/cart.actions";
 import { ContactInfo } from "src/app/models/contact.model";
 
 export const key = 'cart';
@@ -39,6 +39,7 @@ export const initialState: Cart = {
 export const CartState = createReducer(
   initialState,
   on(LoadItemsAction, state => ({...state, loading: true})),
+  on(LoadItemsActionSuccess, (state, {items}) => ({...state, items})),
   on(setNaira, state => ({...state, currency: 'NGN'}) ),
   on(setPounds, state => ({...state, currency: 'GBP'}) ),
   on(RemoveAllItemsAction, state => ({...state, cart: []})),
