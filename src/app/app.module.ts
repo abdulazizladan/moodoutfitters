@@ -56,6 +56,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreEffects } from './store/effects/store.effects';
 import { SumaryComponent } from './components/sumary/sumary.component';
 import { DynamicScriptDirective } from './directives/dynamic-script.directive';
+import { ShopAllComponent } from './components/shop-all/shop-all.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { DynamicScriptDirective } from './directives/dynamic-script.directive';
     CheckoutComponent,
     CartItemComponent,
     SumaryComponent,
-    DynamicScriptDirective
+    DynamicScriptDirective,
+    ShopAllComponent
   ],
 
   imports: [

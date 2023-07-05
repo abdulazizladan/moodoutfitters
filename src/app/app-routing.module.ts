@@ -8,12 +8,17 @@ import { WholesaleComponent } from './components/wholesale/wholesale.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ShopAllComponent } from './components/shop-all/shop-all.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'shop-all',
+    component: ShopAllComponent
   },
   {
     path: 'shipping',
